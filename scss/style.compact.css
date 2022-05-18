@@ -46,7 +46,7 @@ dl dd { height: 300px; background: #d4d0c8; }
 
 dl dd p { text-indent: 1em; padding: 20px; }
 
-.map-info-window { width: 150px; text-align: center; padding: 6px 0; }
+.map-info-window { width: 150px; text-align: center; display: contents; padding: 6px 0; }
 
 #wrap { width: 1320px; margin: 0 auto; }
 

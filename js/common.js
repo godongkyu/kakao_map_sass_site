@@ -53,4 +53,70 @@ $(function(){
       $("+dd",this).css("display","block").animate({height: 300})
     };
   });
+
+  $(".mainbanner").click(function(){
+    if ( $("#carousel").css("overflow") == "visible" ) {
+      $("#carousel").css("overflow","hidden")
+    }else{
+      $("#carousel").css("overflow","")
+    }
+  })
+
+  const widthNum = 155;
+  const caInner = $("#carousel-inner");
+  let liLeng = $("ul.column li",caInner).length
+
+  $("#carousel-inner ul.column").css( "width", widthNum*liLeng );
+
+  function initialFunc(init){
+      caInner.css("margin-left", -widthNum)
+      if (init === "prev") {
+        $("ul.column li:last",caInner).prependTo("#carousel-inner ul.column");
+      }else{
+        $("ul.column li:first",caInner).appendTo("#carousel-inner ul.column");
+      }
+    }
+    initialFunc("prev");
+
+  function actionBtn(el){
+    el.click(function(){
+      let caInMarginLeft = parseInt(caInner.css("marginLeft"));
+      let isAni = caInner.is(":animated");
+      if ( !isAni ) {
+        if (el.attr("id") === "carousel-prev") {
+          caInner.animate({marginLeft: caInMarginLeft + widthNum},function(){
+            initialFunc("prev");
+          })
+        }else{
+          caInner.animate({marginLeft: caInMarginLeft - widthNum},function(){
+            initialFunc("next");
+          })
+        }
+      }
+    })
+  }
+
+    $(".btn").each(function(){
+      actionBtn($(this))
+    });
+
+  let timerID = '';
+  let auto = function(){
+    timerID = setInterval(function(){
+      $("#carousel-next").trigger("click");
+    },3000);
+    return timerID
+  }
+  auto();
+
+  $("#carousel-prev,#carousel-next,#carousel").on({
+    mouseenter: function(){
+      clearInterval(timerID);
+    },
+    mouseleave: function(){
+      timerID = setInterval(function(){
+        $("#carousel-next").trigger("click");
+      },3000);
+    }
+    })
 });
