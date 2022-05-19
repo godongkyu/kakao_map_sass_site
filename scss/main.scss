@@ -10,4 +10,13 @@
   &:nth-child(1) {
     margin-top: 50px;
   }
+  .box {
+    &.items_2 {
+      .items{
+        p + a {
+          margin-top: 50px;
+        }
+      }
+    }
+  }
 }

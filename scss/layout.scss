@@ -52,6 +52,7 @@ $mainMinHeight: calc( 100vh - (#{$headerHeight} + #{$footerHeight} + 51px ));
             top: calc( 100% - 3px );
             opacity: 0;
             transition: .3s;
+            z-index: 500;
             li {
               width: 100%;
               // clear: both;
@@ -110,6 +111,9 @@ $mainMinHeight: calc( 100vh - (#{$headerHeight} + #{$footerHeight} + 51px ));
             }
           }
           &.news {
+            p {
+              margin-bottom: 20px;
+            }
             input {
               &[type=text] {
                 border: 0;
